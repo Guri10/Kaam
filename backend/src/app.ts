@@ -8,6 +8,8 @@ dotenv.config()
 
 import authRoutes from './auth/auth.routes'
 import { errorHandler } from './utils/errorHandler'
+import { authMiddleware } from './middleware/auth.middleware';
+import taskRoutes from './tasks/task.routes';
 
 export const app = express()
 
@@ -23,6 +25,9 @@ app.get('/api/health', (_req, res) => {
 
 // Auth endpoints
 app.use('/api/auth', authRoutes)
+
+// Task endpoints
+app.use('/api/tasks', authMiddleware, taskRoutes);
 
 // Global error handler
 app.use(errorHandler)
