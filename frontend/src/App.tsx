@@ -1,13 +1,23 @@
-import React from 'react';
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import MainLayout from './components/layout/MainLayout'
+import HealthPage from './pages/HealthPage'
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-      <div className="bg-primary dark:bg-background text-white p-6 rounded-lg shadow-lg">
-        Tailwind Colors & Dark Mode Test
-      </div>
-    </div>
-  );
-};
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HealthPage />} />
+          {/* future routes:
+            <Route path="today" element={<TodayPage />} />
+            <Route path="status/:status" element={<StatusPage />} />
+            <Route path="tags" element={<TagsPage />} />
+          */}
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
 
-export default App;
+export default App
