@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import MainLayout from './components/layout/MainLayout'
 import HealthPage from './pages/HealthPage'
+import TaskPage from './pages/TaskPage'
 import { AuthContext } from './context/AuthContext'
 
 const App: React.FC = () => {
@@ -15,7 +16,8 @@ const App: React.FC = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={token ? <MainLayout /> : <Navigate to="/login" replace />}>
-          <Route index element={<HealthPage />} />
+          {/* <Route index element={<HealthPage />} /> */}
+          <Route index element={<TaskPage />} />
           {/* future routes:
             <Route path="today" element={<TodayPage />} />
             <Route path="status/:status" element={<StatusPage />} />
