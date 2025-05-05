@@ -7,7 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // you can add custom colors, fonts, etc. here
       colors: {
         primary: '#8B5CF6',
         background: '#1E293B',

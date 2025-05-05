@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import MainLayout from './components/layout/MainLayout'
+import HealthPage from './pages/HealthPage'
+import TaskPage from './pages/TaskPage'
+import { AuthContext } from './context/AuthContext'
 
 const App: React.FC = () => {
+  const { token } = useContext(AuthContext)
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-      <div className="bg-primary dark:bg-background text-white p-6 rounded-lg shadow-lg">
-        Tailwind Colors & Dark Mode Test
-      </div>
-    </div>
-  );
-};
+      <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={token ? <MainLayout /> : <Navigate to="/login" replace />}>
+          {/* <Route index element={<HealthPage />} /> */}
+          <Route index element={<TaskPage />} />
+          {/* future routes:
+            <Route path="today" element={<TodayPage />} />
+            <Route path="status/:status" element={<StatusPage />} />
+            <Route path="tags" element={<TagsPage />} />
+          */}
+        </Route>
+      </Routes>
+  )
+}
 
-export default App;
+export default App
